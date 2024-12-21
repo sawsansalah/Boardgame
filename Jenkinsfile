@@ -7,7 +7,10 @@ pipeline {
 
         stage('comile') {
             steps {
+                dir('keys') {
+
                 sh 'mvn compile'
+                }
             }
         }
         stage('Tests') {
