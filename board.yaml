@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: pod
+metadata:
+  name: boardpod
+spec: 
+  containers: 
+    - name: boadrdgame
+      image: aziz0114/boardgame
