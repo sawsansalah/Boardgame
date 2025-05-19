@@ -7,11 +7,7 @@ pipeline {
 
 
     stages {
-        stage('Git') {
-            steps {
-                git branch: 'main', url: 'https://github.com/sawsansalah/Boardgame.git'
-            }
-        }
+
         stage('Compile') {
             steps {
                 sh "mvn compile"
