@@ -1,11 +1,5 @@
 # BoardgameListingWebApp
 
-
-
-
-
-hellllloooooo
-
 ## Description
 
 **Board Game Database Full-Stack Web Application.**
