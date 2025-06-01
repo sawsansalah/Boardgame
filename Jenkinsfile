@@ -5,11 +5,6 @@ pipeline {
         maven "maven 3"
     }
     stages {
-        stage('Git') {
-            steps {
-               git branch: 'main', url: 'https://github.com/aziz0114/Boardgame.git'
-            }
-         }
          stage('compile') {
             steps {
                sh "mvn compile"
