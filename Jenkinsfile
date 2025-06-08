@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent { 
+        label "worker10"
+    }
     
     tools {
         jdk "jdk 17"
