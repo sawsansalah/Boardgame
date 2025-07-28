@@ -1,27 +1,31 @@
 pipeline {
     agent any
     tools {
-       jdk 'JDK17'
-        maven 'Maven3'
+        maven 'maven3'
+        jdk   'java17'
     }
-
-
     stages {
- 
-        stage('Compile') {
+
+        stage('compile') {
             steps {
                 sh "mvn compile"
             }
         }
-        stage('Test') {
+        stage('test') {
             steps {
                 sh "mvn test"
             }
         }
-        stage('Package') {
+        stage('package') {
             steps {
                 sh "mvn package"
             }
         }
+       stage('Artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false, onlyIfSuccessful: true
+            }
+        }
+        
     }
 }
