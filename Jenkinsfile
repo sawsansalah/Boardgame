@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                sh "docker build -t boardgame:latest ."
+                sh " sudo docker build -t boardgame:latest ."
             }
         }
         
