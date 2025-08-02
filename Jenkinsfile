@@ -38,6 +38,15 @@ pipeline {
                }
            }
        }
+       stage('Deploy application to container') {
+    steps {
+    script {
+        withDockerRegistry(credentialsId: 'docker-hub-credentials', toolName: 'docker') {
+            sh "docker run -d -p 8085:8080 3788/boardwebapp:latest"
+        }
+    }
+}
+    }
 
 }
 }
