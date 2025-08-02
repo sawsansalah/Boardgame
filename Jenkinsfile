@@ -26,11 +26,20 @@ pipeline {
                 archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false, onlyIfSuccessful: true
             }
         }
-        stage('Docker Build') {
-            steps {
-                sh " docker build -t boardgame:latest ."
-            }
-        }
+       stage('Docker Push Image') {
+           steps {
+               script {
+                   withDockerRegistry(credentialsId: 'docker-hub-credentials', toolName: 'docker') {
+                       sh "docker build -t 3788/boardwebapp:latest ."
+                       sh "docker push 3788/boardwebapp:latest"
+                   }
+               }
+           }
+       }
+
+}
+}
+}
         
     }
 }
