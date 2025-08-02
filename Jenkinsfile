@@ -26,6 +26,11 @@ pipeline {
                 archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false, onlyIfSuccessful: true
             }
         }
+        stage('Docker Build') {
+            steps {
+                sh "docker build -t boardgame:latest ."
+            }
+        }
         
     }
 }
