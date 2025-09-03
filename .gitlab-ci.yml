@@ -6,6 +6,11 @@ stages:          # List of stages for jobs, and their order of execution
   - docker 
   - deploy
 
+
+
+
+
+
 install_mvn_trivy_docker_kubectl:       
   stage: install_tools   
   script:
