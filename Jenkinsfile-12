@@ -29,12 +29,7 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                
-                writeFile file: 'abc.txt', text: 'Hi this test'
-            }
-        }
+       
     }
 }
 

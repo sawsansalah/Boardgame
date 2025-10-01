@@ -1,25 +1,42 @@
 pipeline {
     agent any
-     tools {
+    tools {
          maven 'maven3'
-     }
-    stages {
+          jdk 'jdk-17'
+    }
 
-        stage('comile') {
+    stages {
+        
+        stage('compile') {
             steps {
-                sh 'mvn compile'
+               sh 'mvn compile' 
             }
         }
-        stage('Tests') {
+        stage('test') {
             steps {
-                sh 'mvn test'
+                 sh 'mvn test' 
             }
         }
         stage('package') {
             steps {
-                sh 'mvn package'
+                 sh 'mvn package' 
+            }
+        }
+        stage('Archive') {
+            steps {
+
+                archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false, onlyIfSuccessful: true
             }
         }
 
+        stage('Test') {
+            steps {
+                
+                writeFile file: 'abc.txt', text: 'Hi this test'
+            }
+        }
     }
 }
+
+
+
