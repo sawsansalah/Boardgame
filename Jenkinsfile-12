@@ -24,10 +24,18 @@ pipeline {
         }
         stage('Archive') {
             steps {
-                
+
                 archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false, onlyIfSuccessful: true
+            }
+        }
+
+        stage('Test') {
+            steps {
+                
+                writeFile file: 'abc.txt', text: 'Hi this test'
             }
         }
     }
 }
+
 
