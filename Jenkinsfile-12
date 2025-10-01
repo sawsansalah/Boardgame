@@ -22,6 +22,12 @@ pipeline {
                  sh 'mvn package' 
             }
         }
+        stage('Archive') {
+            steps {
+                
+                archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false, onlyIfSuccessful: true
+            }
+        }
     }
 }
 
