@@ -1,38 +1,53 @@
 pipeline {
-    agent  any
+    agent any
+
     tools {
         maven 'maven3'
         jdk 'jdk-17'
-
     }
+
     stages {
 
-        stage('compile') {
+        stage('Compile') {
             steps {
-                sh "mvn compile"
+                sh 'mvn compile'
             }
         }
-        stage('test') {
+
+        stage('Test') {
             steps {
-                sh "mvn test"
+                sh 'mvn test'
             }
         }
-        stage('package') {
+
+        stage('Package') {
             steps {
-                sh "mvn package"
+                sh 'mvn package'
             }
         }
-       stage('Artifacts') {
+
+        stage('Archive Artifacts') {
             steps {
                 archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false, onlyIfSuccessful: true
             }
         }
 
-        stage('Build  Dockerfile') {
+        stage('Build Docker Image') {
             steps {
-                 sh 'docker build -t boardgame:v1 .'
+                script {
+                    sh 'docker build -t 3788/boardgame:v1 .'
+                }
             }
         }
-        
+
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'docker-hub-credentials', toolName: 'docker') {
+                        sh 'docker push 3788/boardgame:v1'
+                    }
+                }
+            }
+        }
     }
 }
