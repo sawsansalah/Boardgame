@@ -9,7 +9,7 @@ pipeline {
     environment {
         IMAGE_NAME = "3788/boardgame"
         IMAGE_TAG = "v${env.BUILD_NUMBER}"  // dynamic version tag
-        DEPLOY_FILE = "k8s/deployment-service.yaml"
+        DEPLOY_FILE = "deployment-service.yaml"
     }
 
     stages {
