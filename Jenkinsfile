@@ -30,7 +30,7 @@ pipeline {
 
         stage('Build  Dockerfile') {
             steps {
-                 sh 'docker build -t Boardgame:v1 .'
+                 sh 'docker build -t boardgame:v1 .'
             }
         }
         
